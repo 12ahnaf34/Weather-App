@@ -18,20 +18,26 @@ function WeeklyForecast({ weeklyWeather }) {
             <Card
               sx={{
                 Width: "fit-content",
-                backgroundColor: "#F2A057",
-                border: "1px solid #034C8C",
+                fontFamily: "Arial",
+                textAlign: "center",
+                backgroundColor: "#F5EFE6",
+                border: "2px solid #967E76",
+                color: "#343434",
                 margin: "1rem",
                 "&:hover": {
-                  backgroundColor: "#034C8C",
-                  color: "#F2E205",
+                  backgroundColor: "#967E76",
+                  border: "2px solid #EEE3CB",
+                  color: "#EEE3CB",
                   scale: "1.3",
+                  cursor: "default",
                 },
               }}
             >
               <CardContent>
-                <Typography fontSize={15}>{item.name}</Typography>
-                <Image src={item.icon} alt="icon" width="50rem" height="50rem" />
-                <Typography>
+                <Typography fontSize={23} fontWeight={600} fontFamily={"Calibri"}>
+                  {item.name}
+                </Typography>
+                <Typography fontSize={25}>
                   {item.temperature}
                   {firstPeriod.temperatureUnit}
                 </Typography>

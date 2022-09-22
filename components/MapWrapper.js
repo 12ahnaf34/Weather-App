@@ -13,16 +13,17 @@ import { Point } from "ol/geom";
 import TileJSON from "ol/source/TileJSON";
 
 const StyledMapContainer = styled.div`
-  width: 900px;
+  width: 1400px;
   height: 600px;
+  border: 2px solid #967e76;
+  margin-top: 5px;
   margin-left: auto;
-  margin-right:auto;
+  margin-right: auto;
 `;
 
 function MapWrapper(props) {
   // set intial state
-  const { longLat, map, setMap, mapLayerSwitch, setMapLayerSwitch, mapDisplay, setMapDisplay} = props;
-  
+  const { longLat, map, setMap, mapDisplay } = props;
 
   const mapContainer = useRef();
   const mapRef = useRef();
@@ -90,12 +91,7 @@ function MapWrapper(props) {
   //   }
   // };
 
-  return (
-    <div>
-      
-      {mapDisplay && <StyledMapContainer ref={mapContainer}></StyledMapContainer>}
-    </div>
-  );
+  return <div>{mapDisplay && <StyledMapContainer ref={mapContainer}></StyledMapContainer>}</div>;
 }
 
 export default MapWrapper;

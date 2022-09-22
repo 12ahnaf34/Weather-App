@@ -4,22 +4,35 @@ import fire from "../config/fire-conf";
 import "firebase/firestore";
 import "firebase/auth";
 import { Button } from "../pages";
-import VectorSource from "ol/source/Vector";
-import VectorLayer from "ol/layer/Vector";
-import { Feature } from "ol";
-import { Point } from "ol/geom";
-import { fromLonLat } from "ol/proj";
 import { StyledButton } from "./SignIn";
+
 const StyledSpan = styled.span`
-  margin-left: 0.5rem;
-  `;
+  width: fit-content;
+  font-family: "Calibri";
+  font-size: 25px;
+  color: #343434;
+`;
 
 const StyledDiv = styled.div`
+  position: absolute;
+  background-color: #d7c0ae;
+  height: 50px;
+  width: 100vw;
+  bottom: 2px;
+  display: grid;
   color: #f2a057;
-  `;
+  grid-template-rows: 1fr;
+  grid-template-columns: 500px 1fr 1fr 1fr;
+  padding-top: 8px;
+`;
+
+const StyledForm = styled.form`
+  width: fit-content;
+  margin: 0;
+`;
 
 function GeoApi(props) {
-  const { setWeatherForecast, setWeatherNow, userData, signInStatus, longLat, setLongLat, map, mapLayerSwitch, setMapLayerSwitch } = props;
+  const { setWeatherForecast, setWeatherNow, userData, signInStatus, setLongLat } = props;
 
   const [searchTerm, setSearchTerm] = useState("");
   const [locationName, setLocationName] = useState("Linn, Kansas");
@@ -127,11 +140,6 @@ function GeoApi(props) {
     if (searchTerm.trim() === "") {
       return;
     }
-    // if (mapLayerSwitch) {
-    //   setMapLayerSwitch(false);
-    // } else {
-    //   setMapLayerSwitch(true);
-    // }
 
     const longLat = await fetchCoords();
     if (longLat) {
@@ -167,22 +175,22 @@ function GeoApi(props) {
 
   return (
     <StyledDiv>
-      <form autoComplete="off" onSubmit={handleSubmit}>
+      <StyledForm autoComplete="off" onSubmit={handleSubmit}>
         <input autoComplete="off" type="text" onChange={handleChange} />
         <StyledButton type="submit">Search</StyledButton>
-      </form>
-      {locationName}
-      <Button onClick={saveLocation}>Save Location</Button>
-      
-        {signInStatus &&
-          locationsGrids.map((item) => {
-            return (
-              <StyledSpan key={item.id} >
-                <StyledButton onClick={() => fetchSavedLocation(item.grid.office, item.grid.gridX, item.grid.gridY, item.id)}>{item.id}</StyledButton>
-                <button onClick={() => removeLocation(item.id)}>X</button>
-              </StyledSpan>
-            );
-          })}
+      </StyledForm>
+      <StyledSpan>
+        {locationName} <StyledButton onClick={saveLocation}>Save Location</StyledButton>
+      </StyledSpan>
+      {signInStatus &&
+        locationsGrids.map((item) => {
+          return (
+            <StyledSpan key={item.id}>
+              <StyledButton onClick={() => fetchSavedLocation(item.grid.office, item.grid.gridX, item.grid.gridY, item.id)}>{item.id}</StyledButton>
+              <button onClick={() => removeLocation(item.id)}>X</button>
+            </StyledSpan>
+          );
+        })}
     </StyledDiv>
   );
 }

@@ -3,21 +3,25 @@ import styled from "styled-components";
 import fire from "../config/fire-conf";
 
 export const StyledButton = styled.button`
+  height: 35px;
+  width: fit-content;
   padding: 2px 20px;
   margin-left: 20px;
-  margin-right: 20px;
-  color: black;
+  margin-right: 15px;
+  border: 2px solid #967e76;
+  color: #eee3cb;
   text-align: center;
+  font-size: 20px;
   font-weight: bold;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Calibri";
   position: relative;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
-  -webkit-transition: all .4s ease-in-out;
-  -o-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
-  background: #6AAED9 !important;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  background: #343434 !important;
   z-index: 10;
 
   ::before {
@@ -46,16 +50,16 @@ export const StyledButton = styled.button`
     -ms-transform: scale(1, 1);
     transform: scale(1, 1);
   }
-  :hover { 
-    border: 2px solid red;
-    color: black!important;
+  :hover {
+    border: 2px solid #343434;
+    color: #343434 !important;
   }
   :before {
     content: "";
     width: 0%;
     height: 100%;
     display: block;
-    background: #F2A057;
+    background: #d7c0ae;
     position: absolute;
     -ms-transform: skewX(-20deg);
     -webkit-transform: skewX(-20deg);
@@ -64,18 +68,18 @@ export const StyledButton = styled.button`
     opacity: 1;
     top: 0;
     z-index: -12;
-    -moz-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
-    -o-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
-    -webkit-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
-    transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
-    box-shadow: 2px 0px 15px rgba(0, 0, 0, .6);
+    -moz-transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+    -o-transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+    -webkit-transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+    transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+    box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.6);
   }
   ::after {
     content: "";
     width: 0%;
     height: 100%;
     display: block;
-    background: green;
+    background: #967e76;
     position: absolute;
     -ms-transform: skewX(-20deg);
     -webkit-transform: skewX(-20deg);
@@ -84,11 +88,11 @@ export const StyledButton = styled.button`
     opacity: 0;
     top: 0;
     z-index: -15;
-    -moz-transition: all .95s cubic-bezier(.2,.95,.57,.99);
-    -o-transition: all .4s cubic-bezier(.2,.95,.57,.99);
-    -webkit-transition: all .4s cubic-bezier(.2,.95,.57,.99);
-    transition: all .4s cubic-bezier(.2,.95,.57,.99);
-    box-shadow: 2px 0px 15px rgba(0, 0, 0, .6);
+    -moz-transition: all 0.95s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+    -o-transition: all 0.4s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+    -webkit-transition: all 0.4s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+    transition: all 0.4s cubic-bezier(0.2, 0.95, 0.57, 0.99);
+    box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.6);
   }
   :hover::before {
     opacity: 1;
@@ -98,7 +102,7 @@ export const StyledButton = styled.button`
     opacity: 1;
     width: 120%;
   }
-   `;
+`;
 
 function SignIn(props) {
   const { signInStatus, setSignInStatus, setUserData } = props;
