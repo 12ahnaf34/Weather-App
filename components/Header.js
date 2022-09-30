@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { colors } from "./Light-Dark-Theme/ThemeConfig";
 
 const StyledDiv = styled.span`
-  background-color: #d7c0ae;
+  background-color: ${colors.dark};
   color: #f2a057;
   display: flexbox;
   flex-direction: row;

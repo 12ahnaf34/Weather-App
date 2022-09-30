@@ -1,6 +1,7 @@
 import React from "react";
 import { CssBaseline, Box, Container } from "@mui/material";
 import styled from "styled-components";
+import { colors } from "./Light-Dark-Theme/ThemeConfig";
 
 const CardContainer = ({ children }) => {
   return (
@@ -9,7 +10,7 @@ const CardContainer = ({ children }) => {
       <Container maxWidth="100%">
         <Box
           sx={{
-            backgroundColor: "#D7C0AE",
+            backgroundColor: colors.dark,
             height: "fit-content",
             width: "fit-content",
             maxWidth: "100%",

@@ -40,11 +40,13 @@ const ThemeButton = styled.button`
   border: 2px solid #343434;
   background-color: #fcfaf1;
   color: #343434;
+  transition: all 0.4s ease;
 
   :hover {
     margin-left: 15px;
     color: #343434;
     scale: 1.2;
+    cursor: pointer;
   }
 `;
 
@@ -106,12 +108,14 @@ const Home = ({ weatherInitialFetchWeekly, weatherInitialFetchNow, setTheme, the
   const [userData, setUserData] = useState(null);
   const [longLat, setLongLat] = useState([-97.0892, 39.7456]);
   const [map, setMap] = useState(null);
+  const [lightDark, setLightDark] = useState(true);
   //Gets month name instead of number
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const month = new Date().getMonth();
 
   const toggleTheme = () => {
     theme == "light" ? setTheme("dark") : setTheme("light");
+    lightDark ? setLightDark(false) : setLightDark(true);
   };
   const [mapDisplay, setMapDisplay] = useState(false);
 
@@ -137,7 +141,7 @@ const Home = ({ weatherInitialFetchWeekly, weatherInitialFetchNow, setTheme, the
       </StyledUserContainer>
       <StyledContainer>
         <StyledMonth>{monthNames[month]}</StyledMonth>
-        <CurrentWeather weatherNow={weatherNow} />
+        <CurrentWeather weatherNow={weatherNow} lightDark={lightDark} />
         <CardContainer>
           <WeeklyForecast weeklyWeather={weatherForecast} />
         </CardContainer>

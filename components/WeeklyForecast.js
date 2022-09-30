@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Box, Card, CardContent, Typography } from "@mui/material";
+import { colors } from "./Light-Dark-Theme/ThemeConfig";
 
 function WeeklyForecast({ weeklyWeather }) {
   const properties = weeklyWeather.properties;
@@ -20,12 +21,12 @@ function WeeklyForecast({ weeklyWeather }) {
                 Width: "fit-content",
                 fontFamily: "Arial",
                 textAlign: "center",
-                backgroundColor: "#F5EFE6",
-                border: "2px solid #967E76",
-                color: "#343434",
+                backgroundColor: colors.white,
+                border: `2px solid ${colors.dark}`,
+                color: colors.dark,
                 margin: "1rem",
                 "&:hover": {
-                  backgroundColor: "#967E76",
+                  backgroundColor: colors.teal,
                   border: "2px solid #EEE3CB",
                   color: "#EEE3CB",
                   scale: "1.3",

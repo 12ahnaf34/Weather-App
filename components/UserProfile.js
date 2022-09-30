@@ -4,12 +4,12 @@ import styled from "styled-components";
 function UserProfile(props) {
   const { userData, signInStatus } = props;
 
+  const Profile = styled.div`
+    font-family: "Calibri";
+  `;
+
   if (signInStatus) {
-    return (
-      <div>
-        {userData.additionalUserInfo.profile.name}
-      </div>
-    );
+    return <Profile>{userData.additionalUserInfo.profile.name}</Profile>;
   } else {
     return <></>;
   }

@@ -1,34 +1,44 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import fire from "../config/fire-conf";
+import { firebase } from "../config/fire-conf";
 import "firebase/firestore";
 import "firebase/auth";
 import { Button } from "../pages";
 import { StyledButton } from "./SignIn";
+import { colors } from "./Light-Dark-Theme/ThemeConfig";
 
 const StyledSpan = styled.span`
   width: fit-content;
   font-family: "Calibri";
   font-size: 25px;
-  color: #343434;
+  color: ${colors.light};
 `;
 
 const StyledDiv = styled.div`
-  position: absolute;
-  background-color: #d7c0ae;
-  height: 50px;
   width: 100vw;
-  bottom: 2px;
   display: grid;
-  color: #f2a057;
+  position: absolute;
+  background-color: ${colors.dark};
+  bottom: 0px;
+  color: ${colors.light};
   grid-template-rows: 1fr;
-  grid-template-columns: 500px 1fr 1fr 1fr;
-  padding-top: 8px;
+  grid-template-columns: 450px 500px 3fr;
+  align-items: center;
+  padding-left: 5px;
+
+  @media (max-width: 1270px) {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 const StyledForm = styled.form`
   width: fit-content;
   margin: 0;
+`;
+
+const RemoveButton = styled(StyledButton)`
+  margin: 3px;
 `;
 
 function GeoApi(props) {
@@ -43,7 +53,7 @@ function GeoApi(props) {
 
   const fetchSavedLocations = () => {
     setLocationsGrids([]);
-    fire
+    firebase
       .firestore()
       .collection(userData.additionalUserInfo.profile.id)
       .get()
@@ -160,7 +170,7 @@ function GeoApi(props) {
   const saveLocation = () => {
     //userData.additionalUserInfo.profile.id
     if (userData) {
-      fire.firestore().collection(userData.additionalUserInfo.profile.id).doc(locationName).set(currentLocationGrid);
+      firebase.firestore().collection(userData.additionalUserInfo.profile.id).doc(locationName).set(currentLocationGrid);
       fetchSavedLocations();
     } else {
       alert("User must be signed in to save location");
@@ -168,7 +178,7 @@ function GeoApi(props) {
   };
 
   const removeLocation = (location) => {
-    fire.firestore().collection(userData.additionalUserInfo.profile.id).doc(location).delete();
+    firebase.firestore().collection(userData.additionalUserInfo.profile.id).doc(location).delete();
     const newList = locationsGrids.filter((item) => item.id !== location);
     setLocationsGrids(newList);
   };
@@ -182,15 +192,17 @@ function GeoApi(props) {
       <StyledSpan>
         {locationName} <StyledButton onClick={saveLocation}>Save Location</StyledButton>
       </StyledSpan>
-      {signInStatus &&
-        locationsGrids.map((item) => {
-          return (
-            <StyledSpan key={item.id}>
-              <StyledButton onClick={() => fetchSavedLocation(item.grid.office, item.grid.gridX, item.grid.gridY, item.id)}>{item.id}</StyledButton>
-              <button onClick={() => removeLocation(item.id)}>X</button>
-            </StyledSpan>
-          );
-        })}
+      <div>
+        {signInStatus &&
+          locationsGrids.map((item) => {
+            return (
+              <StyledSpan key={item.id}>
+                <StyledButton onClick={() => fetchSavedLocation(item.grid.office, item.grid.gridX, item.grid.gridY, item.id)}>{item.id}</StyledButton>
+                <RemoveButton onClick={() => removeLocation(item.id)}>X</RemoveButton>
+              </StyledSpan>
+            );
+          })}
+      </div>
     </StyledDiv>
   );
 }

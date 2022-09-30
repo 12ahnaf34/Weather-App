@@ -1,15 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import fire from "../config/fire-conf";
+import { firebase } from "../config/fire-conf";
+import "firebase/auth";
+import { colors } from "./Light-Dark-Theme/ThemeConfig";
 
 export const StyledButton = styled.button`
-  height: 35px;
   width: fit-content;
   padding: 2px 20px;
   margin-left: 20px;
   margin-right: 15px;
-  border: 2px solid #967e76;
-  color: #eee3cb;
+  border: 2px solid ${colors.white};
+  color: ${colors.dark};
   text-align: center;
   font-size: 20px;
   font-weight: bold;
@@ -21,7 +22,7 @@ export const StyledButton = styled.button`
   -webkit-transition: all 0.4s ease-in-out;
   -o-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
-  background: #343434 !important;
+  background-color: ${colors.light} !important;
   z-index: 10;
 
   ::before {
@@ -31,7 +32,7 @@ export const StyledButton = styled.button`
     left: 0px;
     width: 100%;
     height: 1px;
-    background: blue;
+    background-color: ${colors.yellow};
     display: block;
     -webkit-transform-origin: left top;
     -ms-transform-origin: left top;
@@ -51,15 +52,15 @@ export const StyledButton = styled.button`
     transform: scale(1, 1);
   }
   :hover {
-    border: 2px solid #343434;
-    color: #343434 !important;
+    border: 2px solid ${colors.orange};
+    color: ${colors.dark} !important;
   }
   :before {
     content: "";
     width: 0%;
     height: 100%;
     display: block;
-    background: #d7c0ae;
+    background: ${colors.yellow};
     position: absolute;
     -ms-transform: skewX(-20deg);
     -webkit-transform: skewX(-20deg);
@@ -79,7 +80,7 @@ export const StyledButton = styled.button`
     width: 0%;
     height: 100%;
     display: block;
-    background: #967e76;
+    background: ${colors.orange};
     position: absolute;
     -ms-transform: skewX(-20deg);
     -webkit-transform: skewX(-20deg);
@@ -108,8 +109,8 @@ function SignIn(props) {
   const { signInStatus, setSignInStatus, setUserData } = props;
 
   const signIn = () => {
-    let googleProvider = new fire.auth.GoogleAuthProvider();
-    fire
+    let googleProvider = new firebase.auth.GoogleAuthProvider();
+    firebase
       .auth()
       .signInWithPopup(googleProvider)
       .then((res) => {
@@ -124,7 +125,7 @@ function SignIn(props) {
 
   const signOut = () => {
     setSignInStatus(false);
-    fire
+    firebase
       .auth()
       .signOut()
       .then((res) => {
