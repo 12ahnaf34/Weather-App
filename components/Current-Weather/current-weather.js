@@ -6,16 +6,16 @@ import { Box } from "@mui/system";
 import { colors } from "../Light-Dark-Theme/ThemeConfig";
 
 const StyledCard = styled(Card)`
+  display: flex;
   margin: 10px;
   padding: 10px;
   text-align: center;
-  color: ${colors.light};
+  color: ${({ color }) => color || colors.light};
   text-decoration: none;
-  border: 3px solid ${({ borderColor }) => borderColor || colors.teal};
+  border: 3px solid ${({ border }) => border || colors.teal};
   border-radius: 50px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  background: ${({ backgroundColor }) => backgroundColor || colors.dark};
-  display: flex;
+  background: ${({ background }) => background || colors.dark};
   margin-left: auto;
   margin-right: auto;
 
@@ -24,7 +24,7 @@ const StyledCard = styled(Card)`
   :active {
     color: ${colors.light};
     border-color: ${colors.dark};
-    background-color: ${colors.teal};
+    background: ${colors.teal};
     cursor: default;
   }
 `;
@@ -59,9 +59,10 @@ const CurrentWeather = ({ weatherNow, lightDark }) => {
   return (
     <Box sx={{ display: "flex" }}>
       <StyledCard
-        backgroundColor={lightDark ? colors.dark : colors.teal}
-        borderColor={lightDark ? colors.teal : colors.light}
-        sx={{ width: "fit-content", maxWidth: "fit-content", maxHeight: "100%", textAlign: "center" }}
+        background={lightDark ? colors.dark : colors.light}
+        border={lightDark ? colors.teal : colors.light}
+        color={lightDark ? colors.light : colors.dark}
+        sx={{ minWidth: "160px", maxHeight: "100%", textAlign: "center" }}
       >
         <CardContent sx={{ flex: "auto", width: "fit-content" }}>
           <StyledDiv>

@@ -15,11 +15,11 @@ const StyledSpan = styled.span`
 `;
 
 const StyledDiv = styled.div`
-  width: 100vw;
   display: grid;
   position: absolute;
-  background-color: ${colors.dark};
+  width: 100%;
   bottom: 0px;
+  background-color: ${colors.dark};
   color: ${colors.light};
   grid-template-rows: 1fr;
   grid-template-columns: 450px 500px 3fr;
@@ -39,6 +39,10 @@ const StyledForm = styled.form`
 
 const RemoveButton = styled(StyledButton)`
   margin: 3px;
+`;
+
+const SaveButton = styled(StyledButton)`
+  vertical-align: 2px;
 `;
 
 function GeoApi(props) {
@@ -190,7 +194,7 @@ function GeoApi(props) {
         <StyledButton type="submit">Search</StyledButton>
       </StyledForm>
       <StyledSpan>
-        {locationName} <StyledButton onClick={saveLocation}>Save Location</StyledButton>
+        {locationName} <SaveButton onClick={saveLocation}>Save Location</SaveButton>
       </StyledSpan>
       <div>
         {signInStatus &&

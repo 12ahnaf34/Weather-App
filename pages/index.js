@@ -28,7 +28,7 @@ export const Button = styled.button`
 `;
 
 const Container = styled.div`
-  height: 100vh;
+  height: 100%;
 `;
 
 const ThemeButton = styled.button`
@@ -76,6 +76,11 @@ const StyledUserContainer = styled.div`
   font-size: 1.2rem;
 `;
 
+const EmptyDiv = styled.div`
+  width: 1400px;
+  height: 600px;
+`;
+
 async function getPointData(longitude, latitude) {
   const res = await fetch(`https://api.weather.gov/points/${longitude},${latitude}`);
   const data = await res.json();
@@ -108,6 +113,7 @@ const Home = ({ weatherInitialFetchWeekly, weatherInitialFetchNow, setTheme, the
   const [userData, setUserData] = useState(null);
   const [longLat, setLongLat] = useState([-97.0892, 39.7456]);
   const [map, setMap] = useState(null);
+  const [mapDisplay, setMapDisplay] = useState(false);
   const [lightDark, setLightDark] = useState(true);
   //Gets month name instead of number
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -117,7 +123,6 @@ const Home = ({ weatherInitialFetchWeekly, weatherInitialFetchNow, setTheme, the
     theme == "light" ? setTheme("dark") : setTheme("light");
     lightDark ? setLightDark(false) : setLightDark(true);
   };
-  const [mapDisplay, setMapDisplay] = useState(false);
 
   const toggleMap = () => {
     setMapDisplay(!mapDisplay);

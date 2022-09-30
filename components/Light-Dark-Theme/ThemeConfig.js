@@ -13,14 +13,14 @@ export const lightTheme = {
   body: colors.light,
   text: "#363537",
   toggleBorder: "#fff",
-  backgroundColor: colors.light,
+  background: colors.light,
 };
 
 export const darkTheme = {
   body: colors.dark,
   text: "#fafafa",
   toggleBorder: "#6b8096",
-  backgroundColor: colors.dark,
+  background: colors.dark,
 };
 
 export const GlobalStyles = createGlobalStyle`

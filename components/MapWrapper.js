@@ -19,6 +19,11 @@ const StyledMapContainer = styled.div`
   margin-top: 5px;
   margin-left: auto;
   margin-right: auto;
+
+  @media (max-width: 1400px) {
+    width: 700px;
+    height: 300px;
+  }
 `;
 
 function MapWrapper(props) {
